@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Test</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <!--css-->
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/css/main.css}" rel="stylesheet"/>
+
+    <!--js-->
+    <script th:src="@{/js/bootstrap.js}"></script>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 40%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+<h1 th:text="User"></h1>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="user : ${list}">
+        <td th:text="*{user.getId()}"></td>
+        <td th:text="*{user.getName()}"></td>
+        <td>
+            <a th:href="@{/edit?id={id}(id=${user.id})}" class="btn btn-primary">Edit</a>
+            <a th:href="@{/delete?id={id}(id=${user.id})}" class="btn btn-danger">Delete</a>
+        </td>
+    </tr>
+</table>
+<a href="add" class="btn btn-primary">ADD</a>
+
+
+</body>
+
+</html>
